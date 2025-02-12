@@ -1,52 +1,52 @@
-# include <stdio.h>
-# include <stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
-
-typedef struct s_node {
+typedef struct node {
     int data;
-    struct s_node *next;
-} my_node;
+    struct node* next;
+} Node;
 
-
-void cree_node(my_node **head, int data1)
-{
-    my_node *nwnode;
-    nwnode = malloc(sizeof(my_node));
-    if (!nwnode)
-        return;
-    nwnode->data = data1;
-    nwnode->next = NULL;
-    if (*head == NULL) 
-    {
-        *head = nwnode;  // Si la liste est vide
-    } 
-    else 
-    {
-        my_node *tmp = *head;
-        while (tmp->next)
-            tmp = tmp->next;  
-        tmp->next = nwnode; // Ajouter à la fin
-    }
-}
-void printlist(my_node *head)
-{
-    while (head)
-    {
-        printf("--> %d\n", head->data);
-        head = head->next; 
-    }
+Node  *createNode(int data) {
+    Node* newNode = malloc(sizeof(Node));
+    newNode->data = data;
+    newNode->next = NULL;
+    return newNode;
 }
 
-int main()
+Node *first_node(Node *head, int data) // "ADD FIRST NODE"
 {
-    my_node *head = NULL; 
+    Node *n_node = malloc(sizeof(Node));
+    n_node->data = data;
+    n_node->next = head;
+    return (n_node);
+}
 
-    cree_node(&head, 12);
-    cree_node(&head, 11);
-    cree_node(&head, 16);
-    cree_node(&head, 18);
-    cree_node(&head, 19);
-    cree_node(&head, 15);
+void printList(Node* node) {
+    while (node != NULL) {
+        printf("%d ", node->data);
+        node = node->next;
+    }
+    printf("\n");
+}
 
-    printlist(head);
+int main() {
+
+    Node* head = createNode(2);
+    head->next = createNode(3);
+    head->next->next = createNode(5);
+    head->next->next->next = createNode(6);
+
+    head = first_node(head, 12);
+
+    printList(head);
+
+    while (head != NULL)
+    {
+        Node *next = head->next;
+        free(head);
+        head = next;
+    }
+
+    return 0;
 }
