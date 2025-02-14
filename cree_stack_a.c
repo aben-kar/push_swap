@@ -1,12 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <limits.h>
-#include <stdbool.h>
-
-typedef struct node {
-    int data;
-    struct node* next;
-} Node;
+#include "push_swap.h"
 
 int ft_atoi(const char *s)
 {
@@ -41,11 +33,12 @@ Node *find_last_node(Node *head)
 {
     if (head == NULL)
         return (NULL);
-    while (head->next != NULL)
+    Node *curr = head;
+    while (curr->next != NULL)
     {
-        head = head->next;
+        curr = curr->next;
     }
-    return (head);
+    return (curr);
 }
 
 void cree_node(Node **head, int data)
@@ -58,13 +51,13 @@ void cree_node(Node **head, int data)
     if (*head == NULL)
     {
         *head = newNode;
-        newNode->next = NULL;
+        newNode->prev = NULL;
     }
     else
     {
         last_node = find_last_node(*head);
         last_node->next = newNode;
-        newNode->next = NULL;
+        newNode->prev = last_node;
     }
 }
 
@@ -82,11 +75,14 @@ void free_list(Node **head)
 
 int repetition(Node *head, int nbr)
 {
-    while (head != NULL)
+    if (head == NULL)
+        return (0);
+    Node *curr = head;
+    while (curr != NULL)
     {
-        if (head->data == nbr)
+        if (curr->data == nbr)
             return (1);
-        head = head->next;
+        curr = curr->next;
     }
     return (0);
 }
@@ -100,6 +96,8 @@ void stack_a(Node **head, char **av)
         if (repetition(*head, nbr))
         {
             free_list(head);
+            write (2, "Error\n", 6);
+            exit(1);
         }
         cree_node(head, nbr);
         av++;
@@ -109,11 +107,10 @@ void stack_a(Node **head, char **av)
 int main()
 {
     Node *a = NULL;
-    char *av[] = {"42", "12", "11", NULL}; // Correct initialization of `av`
-
+    Node *b = NULL;
+    char *av[] = {"3", "11", "4", "2", "9","1", NULL};
     stack_a(&a, av);
 
-    // Print the list
     Node *curr = a;
     while (curr != NULL)
     {
@@ -122,7 +119,6 @@ int main()
     }
     printf("\n");
 
-    // Free the list
     free_list(&a);
 
     return 0;

@@ -1,34 +1,36 @@
-==> main function.
+1- sa => swap 2 top element in stack 'a'.
+2- sb => swap 2 top element in stack 'b'.
+3- ss => sa and sb at the same time.
+-----------------------------------------
+4- pa => push the first element at the stack b and put at stack a.
+5- pb => push the first element at the stack a and put at stack b.
+------------------------------------------------------------------
+6- (rotate a)ra => "1 2 3" shift "2 3 1".
+7- (rotate b)rb => "4 5 6" shift "5 6 4".
+8- rr => ra and rb at the same time.
+-----------------------------------------
+9- (reverse rotate a)rra => "2 3 1" shift "1 2 3".
+10- (reverse rotate b)rrb => "5 6 4" shift "4 5 6".
+11- rrr => rra and rrb at the same time.
 
-// if (ac == 1 || (ac == 2 && !av[1][0]))
-//   return (1);
-// else if (ac == 2)
-//   av = ft_split(av[1], ' '); 
-// (function)stack_init(&a, av + 1, ac == 2);
-//
-//
-//
-//
-//
-//
-//
-//
-//
+//////////////////////////////////////////////////
+//------------- Truck algorithme -------------  //
+//////////////////////////////////////////////////
 
----------------------------------------------------
+a       b
 
-==> (function)stack_init
+1    
+2
+3
+4
+5       2
+6       1
+NULL    NULL
 
-// 
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+a       b
+
+3
+4
+5       2
+6       1
+NULL    NULL
