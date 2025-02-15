@@ -13,24 +13,19 @@
 10- (reverse rotate b)rrb => "5 6 4" shift "4 5 6".
 11- rrr => rra and rrb at the same time.
 
+// edge cases :
+==> Spaces zyada.
+==> Signs (+/-).
+==> Chi haja machi number.
+==> Doublons.
+==> Numbers kbar bzzaf.
+==> No arguments.
+==> Empty string.
+==> Chi haja ghalat (b7al 2a).
+==> Chi haja khawi.
+==> Chi haja ghalat (b7al 4!).
+
 //////////////////////////////////////////////////
 //------------- Truck algorithme -------------  //
 //////////////////////////////////////////////////
 
-a       b
-
-1    
-2
-3
-4
-5       2
-6       1
-NULL    NULL
-
-a       b
-
-3
-4
-5       2
-6       1
-NULL    NULL
