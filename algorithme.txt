@@ -14,15 +14,15 @@
 11- rrr => rra and rrb at the same time.
 
 // edge cases :
-==> Spaces zyada.  \true\
-==> Signs (+/-).    \true\ mais ila (Signs > 1) \Error\
-==> Chi haja machi number. \Error\
-==> Doublons.  \Error\
+\\==> Spaces zyada.  \true\ [yes]
+\\==> Signs (+/-).    \true\ mais ila (Signs > 1) \Error\ [yes]
+\\==> Chi haja machi number. \Error\ [yes]
+\\==> Doublons.  \Error\  [yes]
 ==> Numbers kbar bzzaf.  INT_MAX ==> \Error\
-==> No arguments.  \exit
+\\==> No arguments.  \exit  [yes]
 ==> Empty string.   \Error
-==> Chi haja ghalat (b7al 2a).   \Error\
-==> Chi haja ghalat (b7al 4!).   \Error\
+\\==> Chi haja ghalat (b7al 2a).   \Error\  [yes]
+\\==> Chi haja ghalat (b7al 4!).   \Error\  [yes]
 
 //////////////////////////////////////////////////
 //------------- Truck algorithme -------------  //

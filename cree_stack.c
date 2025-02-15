@@ -1,32 +1,45 @@
 #include "push_swap.h"
 
+#include <limits.h>
+#include <unistd.h>
+#include <stdlib.h>
+
 int ft_atoi(const char *s)
 {
-    int i;
-    int rs;
-    int sign;
+    int i = 0;
+    long rs = 0;
+    int sign = 1;
 
-    i = 0;
-    rs = 0;
-    sign = 1;
     while ((s[i] >= '\t' && s[i] <= '\r') || s[i] == ' ')
         i++;
+
     if (s[i] == '-' || s[i] == '+')
     {
         if (s[i] == '-')
             sign = -1;
         i++;
     }
+
     while (s[i] >= '0' && s[i] <= '9')
     {
-        rs = rs * 10 + (s[i] - 48);
+        rs = rs * 10 + (s[i] - '0');
+
+        // Check for overflow
         if (rs * sign > INT_MAX)
-            return (INT_MAX);
+            return INT_MAX;
         if (rs * sign < INT_MIN)
-            return (INT_MIN);
+            return INT_MIN;
+
         i++;
     }
-    return (rs * sign);
+
+    if (s[i] != '\0')
+    {
+        write(2, "Error\n", 6);
+        exit(1);
+    }
+
+    return (int)(rs * sign);
 }
 
 int count_node(Node **head)
@@ -106,9 +119,7 @@ void stack_a(Node **head, char **av)
     // int i = 0;
     while (*av)
     {
-        // printf("Processing argument: %s\n", *av); 
         nbr = ft_atoi(*av);
-        // printf("Converted number: %d\n", nbr);
         if (repetition(*head, nbr))
         {
             free_list(head);
@@ -119,42 +130,3 @@ void stack_a(Node **head, char **av)
         av++;
     }
 }
-
-
-
-
-
-
-// int main()
-// {
-//     Node *a = NULL;
-//     Node *b = NULL;
-//     char *av[] = {"3", "11", "4", "2", "9","1", NULL};
-//     stack_a(&a, av);
-
-//     // rra(&a);
-//     // pb(&a, &b);
-
-//     printf ("%d\n", count_node(&a));
-
-//     Node *curr = a;
-//     while (curr != NULL)
-//     {
-//         printf("%d ", curr->data);
-//         curr = curr->next;
-//     }
-
-//     // printf("\n");
-
-//     Node *curr1 = b;
-//     while (curr1 != NULL)
-//     {
-//         printf("%d ", curr1->data);
-//         curr1 = curr1->next;
-//     }
-//     // printf("\n");
-//     free_list(&a);
-//     free_list(&b);
-
-//     return 0;
-// }
