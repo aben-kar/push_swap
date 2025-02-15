@@ -1,45 +1,29 @@
 #include "push_swap.h"
 
-void	*ft_calloc(size_t count, size_t size)
-{
-	unsigned char	*s;
-	size_t			i;
-
-	i = 0;
-	if (size != 0 && (count > SIZE_MAX / size))
-		return (NULL);
-	s = (unsigned char *)malloc(count * size);
-	if (s == NULL)
-		return (NULL);
-	while (i < count * size)
-	{
-		s[i] = 0;
-		i++;
-	}
-	return (s);
+void *ft_calloc(size_t count, size_t size) {
+    unsigned char *s;
+    size_t i;
+    if (size != 0 && (count > SIZE_MAX / size))
+        return NULL;
+    s = (unsigned char *)malloc(count * size);
+    if (!s)
+        return NULL;
+    for (i = 0; i < count * size; i++)
+        s[i] = 0;
+    return s;
 }
 
-int	count_word(char const *s1, char sp)
-{
-	int	i;
-	int	count;
-	int	check;
-
-	i = 0;
-	count = 0;
-	check = 1;
-	while (s1[i])
-	{
-		if (s1[i] != sp && check == 1)
-		{
-			count += 1;
-			check = 0;
-		}
-		else if (s1[i] == sp)
-			check = 1;
-		i++;
-	}
-	return (count);
+int count_word(const char *s1, char sp) {
+    int i = 0, count = 0, check = 1;
+    while (s1[i]) {
+        if (s1[i] != sp && check == 1) {
+            count++;
+            check = 0;
+        } else if (s1[i] == sp)
+            check = 1;
+        i++;
+    }
+    return count;
 }
 
 char	*ft_strsdup(char const *s, size_t *j, char sp)
@@ -47,15 +31,17 @@ char	*ft_strsdup(char const *s, size_t *j, char sp)
 	char	*result;
 	size_t	i;
 	size_t	k;
+	size_t	len;
 
 	i = *j;
 	while (s[*j] != sp && s[*j])
 		(*j)++;
-	result = (char *)malloc((*j - i + 1) * sizeof(char));
+	len = *j - i;
+	result = (char *)malloc((len + 1) * sizeof(char));
 	if (!result)
 		return (NULL);
 	k = 0;
-	while (k < *j - i)
+	while (k < len)
 	{
 		result[k] = s[i + k];
 		k++;
@@ -64,19 +50,13 @@ char	*ft_strsdup(char const *s, size_t *j, char sp)
 	return (result);
 }
 
-void	*ft_free(char **prr)
-{
-	int	i;
-
-	i = 0;
-	while (prr[i])
-	{
-		free(prr[i]);
-		i++;
-	}
-	free(prr);
-	return (NULL);
+void ft_free(char **prr) {
+    int i = 0;
+    while (prr[i])
+        free(prr[i++]);
+    free(prr);
 }
+
 
 char	**ft_split(char const *s, char c)
 {
@@ -91,7 +71,7 @@ char	**ft_split(char const *s, char c)
 		return (NULL);
 	len_word = count_word(s, c);
 	prr = (char **)ft_calloc((len_word + 1), sizeof(char *));
-	if (prr == NULL)
+	if (!prr)
 		return (NULL);
 	while (j < len_word)
 	{
@@ -99,8 +79,12 @@ char	**ft_split(char const *s, char c)
 			i++;
 		prr[j] = ft_strsdup(s, &i, c);
 		if (!prr[j])
-			return (ft_free(prr));
+		{
+			ft_free(prr);
+			return (NULL);
+		}
 		j++;
 	}
+	prr[j] = NULL;
 	return (prr);
 }

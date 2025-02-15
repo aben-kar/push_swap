@@ -29,16 +29,6 @@ int ft_atoi(const char *s)
     return (rs * sign);
 }
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
 int count_node(Node **head)
 {
     int count = 0;
@@ -66,19 +56,21 @@ void cree_node(Node **head, int data)
 {
     Node *last_node;
     Node* newNode = malloc(sizeof(Node));
+    if (!newNode) {
+        write(2, "Memory allocation failed\n", 25);
+        exit(1);
+    }
     newNode->data = data;
     newNode->next = NULL;
 
     if (*head == NULL)
     {
         *head = newNode;
-        newNode->next = NULL;
     }
     else
     {
         last_node = find_last_node(*head);
         last_node->next = newNode;
-        newNode->next = NULL;
     }
 }
 
@@ -107,47 +99,24 @@ int repetition(Node *head, int nbr)
     }
     return (0);
 }
-int is_string(char *str)
-{
-    return (str[0] == '"' && str[ft_strlen(str) - 1] == '"');
-}
 
 void stack_a(Node **head, char **av)
 {
     int nbr;
-    char **args;
-    char **original_args; // To store the result of ft_split
-
-    while (*av)  // Loop on each argument
+    // int i = 0;
+    while (*av)
     {
-        if (is_string(*av))  // Check if it is a string (like "6 7 8 9")
+        // printf("Processing argument: %s\n", *av); 
+        nbr = ft_atoi(*av);
+        // printf("Converted number: %d\n", nbr);
+        if (repetition(*head, nbr))
         {
-            args = ft_split(*av, ' ');
-            original_args = args; // Save the result of split for later free
+            free_list(head);
+            write(2, "Error\n", 6);
+            exit(1);
         }
-        else
-        {
-            args = av; // Use the current argument directly
-            av++;      // Move to the next argument in av
-        }
-
-        while (*args)  // Loop on the split arguments
-        {
-            nbr = ft_atoi(*args);
-            if (repetition(*head, nbr)) // Check for duplicates
-            {
-                free_list(head);
-                write(2, "Error\n", 6);
-                exit(1);
-            }
-            cree_node(head, nbr); // Add the node
-            args++; // Move to next split argument
-        }
-
-        if (is_string(*av))  // Only free if it was a split string
-        {
-            free(original_args); // Free the split arguments
-        }
+        cree_node(head, nbr);
+        av++;
     }
 }
 

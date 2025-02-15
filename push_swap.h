@@ -33,5 +33,7 @@ void ss(Node **head_a, Node **head_b);
 void stack_a(Node **head, char **av);
 char	**ft_split(char const *s, char c);
 void free_list(Node **head);
+// char **ft_split(const char *str, char sep);
+int count_word(const char *s1, char sp);
 
 #endif
