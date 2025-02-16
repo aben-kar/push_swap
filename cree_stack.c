@@ -21,11 +21,17 @@ int ft_atoi(const char *s)
         rs = rs * 10 + (s[i] - '0');
 
         if ((rs * sign) > INT_MAX || (rs * sign) < INT_MIN)
+        {
             write (2, "Error\n", 6);
+            exit(1);
+        }
         i++;
     }
     if (s[i] != '\0')
+    {
         write (2, "Error\n", 6);
+        exit(1);
+    }
     return (rs * sign);
 }
 
@@ -64,14 +70,14 @@ void free_list(Node **head)
     *head = NULL;
 }
 
-void cree_node(Node **head, int data)
+int cree_node(Node **head, int data)
 {
     Node *last_node;
     Node* newNode = malloc(sizeof(Node));
     if (!newNode) {
         write (2, "Error\n", 6);
         free_list(head);
-        exit(1);
+        return 1;
     }
     newNode->data = data;
     newNode->next = NULL;
@@ -83,6 +89,7 @@ void cree_node(Node **head, int data)
         last_node = find_last_node(*head);
         last_node->next = newNode;
     }
+    return (0);
 }
 
 
@@ -106,20 +113,17 @@ int stack_a(Node **head, char **av)
     while (*av)
     {
         nbr = ft_atoi(*av);
-        if (!nbr)
+        if (repetition(*head, nbr))
         {
-            // write (2, "Error\n", 6);
-            free_list(head);
-            return 1;
-        }
-        else if (repetition(*head, nbr))
-        {
-            write (2, "ana\n", 4);
             free_list(head);
             write(2, "E2rror\n", 7);
             return (2);
         }
-        cree_node(head, nbr);
+        if (cree_node(head, nbr))
+        {
+            free_list(head);
+            return 1;
+        }
         av++;
     }
     return (0);
