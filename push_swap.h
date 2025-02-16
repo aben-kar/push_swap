@@ -30,12 +30,17 @@ void sa(Node **head);
 void sb(Node **head);
 void ss(Node **head_a, Node **head_b);
 //////////////////////////////////////
-void stack_a(Node **head, char **av);
-char	**ft_split(char const *s, char c);
+int stack_a(Node **head, char **av);
+char	**ft_split(char const *s, char *c);
 void free_list(Node **head);
-int count_word(const char *s1, char sp);
+int	count_word(char const *s1, char *sp);
 char **parse_arguments(int ac, char **av);
 char	*ft_strchr(const char *str, int c);
 void printList(Node* node);
+int is_only_spaces(const char *str);
+void	ft_free(char **prr);
+char	*ft_strdup(const char *s1);
+void *ft_calloc(size_t count, size_t size);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
 
 #endif

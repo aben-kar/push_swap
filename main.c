@@ -27,11 +27,23 @@ int main(int ac, char **av)
             write (2, "Error\n", 6);
             return 1;
         }
+        
         char **number = parse_arguments(ac, av);
+        if (!number)
+        {
+            return (1);   
+        }
 
-        stack_a(&a, number);
+        if (stack_a(&a, number) != 0) // Check for errors in stack_a
+        {
+            ft_free(number); // Free the arguments array
+            return 1;
+        }
 
         printList(a);
         // printList(b);
+        free_list(&a);
+
+        ft_free(number);
     }
 }

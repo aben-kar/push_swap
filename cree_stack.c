@@ -1,9 +1,5 @@
 #include "push_swap.h"
 
-#include <limits.h>
-#include <unistd.h>
-#include <stdlib.h>
-
 int ft_atoi(const char *s)
 {
     int i = 0;
@@ -24,31 +20,31 @@ int ft_atoi(const char *s)
     {
         rs = rs * 10 + (s[i] - '0');
 
-        // Check for overflow
-        if (rs * sign > INT_MAX)
-            return INT_MAX;
-        if (rs * sign < INT_MIN)
-            return INT_MIN;
-
+        if ((rs * sign) > INT_MAX || (rs * sign) < INT_MIN)
+        {
+            write(2, "Error\n", 6);
+            return (1);
+        }
         i++;
     }
 
     if (s[i] != '\0')
     {
-        write(2, "Error\n", 6);
-        exit(1);
+        write(2, "Erro6r\n", 7);
+        return (1);
     }
 
-    return (int)(rs * sign);
+    return (rs * sign);
 }
 
 int count_node(Node **head)
 {
     int count = 0;
-    while (*head != NULL)
+    Node *curr = *head;
+    while (curr != NULL)
     {
         count++;
-        *head = (*head)->next;
+        curr = curr->next;
     }
     return (count);
 }
@@ -64,29 +60,6 @@ Node *find_last_node(Node *head)
     }
     return (curr);
 }
-
-void cree_node(Node **head, int data)
-{
-    Node *last_node;
-    Node* newNode = malloc(sizeof(Node));
-    if (!newNode) {
-        write(2, "Memory allocation failed\n", 25);
-        exit(1);
-    }
-    newNode->data = data;
-    newNode->next = NULL;
-
-    if (*head == NULL)
-    {
-        *head = newNode;
-    }
-    else
-    {
-        last_node = find_last_node(*head);
-        last_node->next = newNode;
-    }
-}
-
 void free_list(Node **head)
 {
     Node *curr = *head;
@@ -98,6 +71,28 @@ void free_list(Node **head)
     }
     *head = NULL;
 }
+
+void cree_node(Node **head, int data)
+{
+    Node *last_node;
+    Node* newNode = malloc(sizeof(Node));
+    if (!newNode) {
+        write (2, "Error\n", 6);
+        free_list(head);
+        exit(1);
+    }
+    newNode->data = data;
+    newNode->next = NULL;
+
+    if (*head == NULL)
+        *head = newNode;
+    else
+    {
+        last_node = find_last_node(*head);
+        last_node->next = newNode;
+    }
+}
+
 
 int repetition(Node *head, int nbr)
 {
@@ -113,20 +108,20 @@ int repetition(Node *head, int nbr)
     return (0);
 }
 
-void stack_a(Node **head, char **av)
+int stack_a(Node **head, char **av)
 {
     int nbr;
-    // int i = 0;
     while (*av)
     {
         nbr = ft_atoi(*av);
         if (repetition(*head, nbr))
         {
             free_list(head);
-            write(2, "Error\n", 6);
-            exit(1);
+            write(2, "E2rror\n", 7);
+            return (1);
         }
         cree_node(head, nbr);
         av++;
     }
+    return (0);
 }

@@ -10,7 +10,7 @@ char **parse_arguments(int ac, char **av)
     int k = 1;
     while (k < ac)
     {
-        arg_count += count_word(av[k], ' ');
+        arg_count += count_word(av[k], " \t");
         k++;
     }
 
@@ -18,31 +18,52 @@ char **parse_arguments(int ac, char **av)
     if (!args)
         return NULL;
 
+    for (int x = 0; x < arg_count + 1; x++) // Initialisation correcte
+        args[x] = NULL;
+
     i = 1;
     while (i < ac)
     {
-        if (!(*av[i]))
+        if (!av[i] || is_only_spaces(av[i]))
         {
-            write (2, "Error\n", 6);
-            exit(1);
+            write(2, "Error\n", 6);
+            ft_free(args);
+            return (NULL);
         }
-        else if (*av[i] && ft_strchr(av[i], ' '))
+
+        if (ft_strchr(av[i], ' ') || ft_strchr(av[i], '\t'))
         {
-            char **split_args = ft_split(av[i], ' ');
+            char **split_args = ft_split(av[i], " \t");
             if (!split_args)
-                return NULL;
+            {
+                ft_free(args);
+                return (NULL);
+            }
 
             int k = 0;
             while (split_args[k])
             {
-                args[j] = split_args[k];
+                args[j] = ft_strdup(split_args[k]);
+                if (!args[j])
+                {
+                    ft_free(split_args);
+                    ft_free(args);
+                    return (NULL);
+                }
                 k++;
                 j++;
             }
+            ft_free(split_args);
         }
+
         else
         {
-            args[j] = av[i];
+            args[j] = ft_strdup(av[i]);
+            if (!args[j])
+            {
+                ft_free(args);
+                return (NULL);
+            }
             j++;
         }
         i++;
@@ -51,10 +72,10 @@ char **parse_arguments(int ac, char **av)
 
     return (args);
 }
-void printList(Node* node) {
-    while (node != NULL) {
-        printf("%d ", node->data);
-        node = node->next;
+void printList(Node* head) {
+    while (head != NULL) {
+        printf("%d ", head->data);
+        head = head->next;
     }
     printf("\n");
 }
