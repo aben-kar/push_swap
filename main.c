@@ -24,7 +24,7 @@ int main(int ac, char **av)
 
         if ((!av[1][0]))
         {
-            write (2, "E+rror\n", 7);
+            write (2, "empty-->Error\n", 14);
             return 1;
         }
         
