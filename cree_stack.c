@@ -21,19 +21,11 @@ int ft_atoi(const char *s)
         rs = rs * 10 + (s[i] - '0');
 
         if ((rs * sign) > INT_MAX || (rs * sign) < INT_MIN)
-        {
-            write(2, "Error\n", 6);
-            return (1);
-        }
+            write (2, "Error\n", 6);
         i++;
     }
-
     if (s[i] != '\0')
-    {
-        write(2, "Erro6r\n", 7);
-        return (1);
-    }
-
+        write (2, "Error\n", 6);
     return (rs * sign);
 }
 
@@ -114,11 +106,18 @@ int stack_a(Node **head, char **av)
     while (*av)
     {
         nbr = ft_atoi(*av);
-        if (repetition(*head, nbr))
+        if (!nbr)
         {
+            // write (2, "Error\n", 6);
+            free_list(head);
+            return 1;
+        }
+        else if (repetition(*head, nbr))
+        {
+            write (2, "ana\n", 4);
             free_list(head);
             write(2, "E2rror\n", 7);
-            return (1);
+            return (2);
         }
         cree_node(head, nbr);
         av++;

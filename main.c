@@ -30,13 +30,10 @@ int main(int ac, char **av)
         
         char **number = parse_arguments(ac, av);
         if (!number)
+            return (1);
+        if (stack_a(&a, number) != 0)
         {
-            return (1);   
-        }
-
-        if (stack_a(&a, number) != 0) // Check for errors in stack_a
-        {
-            ft_free(number); // Free the arguments array
+            ft_free(number);
             return 1;
         }
 
