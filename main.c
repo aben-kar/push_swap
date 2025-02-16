@@ -24,19 +24,20 @@ int main(int ac, char **av)
 
         if ((!av[1][0]))
         {
-            write (2, "Error\n", 6);
+            write (2, "E+rror\n", 7);
             return 1;
         }
         
-        char **number = parse_arguments(ac, av);
+        Node *number = parse_arguments(ac, av);
         if (!number)
         {
-            // ft_free(number);
+            free_list(&number);
             return (1);
         }
+
         if (stack_a(&a, number) != 0)
         {
-            ft_free(number);
+            free_list(&number);
             return 1;
         }
 
@@ -44,6 +45,6 @@ int main(int ac, char **av)
         // printList(b);
         free_list(&a);
 
-        ft_free(number);
+        free_list(&number);
     }
 }

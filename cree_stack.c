@@ -75,7 +75,8 @@ int cree_node(Node **head, int data)
     Node *last_node;
     Node* newNode = malloc(sizeof(Node));
     if (!newNode) {
-        write (2, "Error\n", 6);
+        write (2, "E6rror\n", 7);
+        free(newNode);
         free_list(head);
         return 1;
     }
@@ -107,24 +108,27 @@ int repetition(Node *head, int nbr)
     return (0);
 }
 
-int stack_a(Node **head, char **av)
+int stack_a(Node **head, Node *av)
 {
     int nbr;
-    while (*av)
+    while (av)
     {
-        nbr = ft_atoi(*av);
+        nbr = av->data;
         if (repetition(*head, nbr))
         {
             free_list(head);
-            write(2, "E2rror\n", 7);
+            write(2, "Error\n", 6);
             return (2);
         }
-        if (cree_node(head, nbr))
+
+        if (cree_node(head, nbr) != 0)
         {
             free_list(head);
-            return 1;
+            return (1);
         }
-        av++;
+
+        av = av->next;
     }
     return (0);
 }
+

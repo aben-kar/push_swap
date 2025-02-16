@@ -67,7 +67,7 @@ void	ft_free(char **prr)
 	while (prr && prr[i])
 	{
 		free(prr[i]);
-		prr[i] = NULL;
+		// prr[i] = NULL;
 		i++;
 	}
 	if (prr)
