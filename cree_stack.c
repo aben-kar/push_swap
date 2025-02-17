@@ -14,6 +14,11 @@ int ft_atoi(const char *s)
         if (s[i] == '-')
             sign = -1;
         i++;
+        if (!ft_isdigit(s[i]))
+        {
+            write(2, "sign-->Error\n", 13);
+            return (-1);
+        }
     }
 
     while (s[i] >= '0' && s[i] <= '9')

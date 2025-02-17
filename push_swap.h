@@ -45,5 +45,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 int cree_node(Node **head, int data);
 int ft_atoi(const char *s);
 int repetition(Node **head, int nbr);
+int	ft_isdigit(int c);
 
 #endif

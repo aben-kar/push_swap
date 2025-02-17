@@ -28,41 +28,6 @@ int is_only_spaces(const char *str)
     return (1);
 }
 
-char	*ft_strdup(const char *s1)
-{
-	size_t	len;
-	char	*ptr;
-
-	if (!s1)
-		return (NULL);
-	len = ft_strlen(s1);
-	ptr = (char *)ft_calloc((len + 1), sizeof(char));
-	if (ptr == NULL)
-		return (NULL);
-	ft_memcpy(ptr, s1, len);
-	ptr[len] = '\0';
-	return (ptr);
-}
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	unsigned char	*d;
-	unsigned char	*s;
-	size_t			i;
-
-	if (dst == NULL && src == NULL)
-		return (NULL);
-	d = (unsigned char *)dst;
-	s = (unsigned char *)src;
-	i = 0;
-	while (i < n)
-	{
-		d[i] = s[i];
-		i++;
-	}
-	return (dst);
-}
-
 void	*ft_calloc(size_t count, size_t size)
 {
 	unsigned char	*s;
@@ -80,4 +45,11 @@ void	*ft_calloc(size_t count, size_t size)
 		i++;
 	}
 	return (s);
+}
+
+int	ft_isdigit(int c)
+{
+	while (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }

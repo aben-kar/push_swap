@@ -23,6 +23,13 @@ Node *parse_arguments(int ac, char **av)
             return (NULL);
         }
 
+        // if (!is_valid_sign(av[i]))
+        // {
+        //     write(2, "sign-->Error\n", 13);
+        //     free_list(&head);
+        //     return (NULL);
+        // }
+
         if (ft_strchr(av[i], ' '))
         {
             char **split_args = ft_split(av[i], ' ');
