@@ -8,35 +8,24 @@ int ft_atoi(const char *s)
 
     while ((s[i] >= '\t' && s[i] <= '\r') || s[i] == ' ')
         i++;
-
     if (s[i] == '-' || s[i] == '+')
     {
         if (s[i] == '-')
             sign = -1;
         i++;
         if (!ft_isdigit(s[i]))
-        {
-            write(2, "sign-->Error\n", 13);
-            return (-1);
-        }
+            return print_error("Error");
     }
-
     while (s[i] >= '0' && s[i] <= '9')
     {
         rs = rs * 10 + (s[i] - '0');
 
         if ((rs * sign) > INT_MAX || (rs * sign) < INT_MIN)
-        {
-            write (2, "MAX_INT-->Error\n", 16);
-            return (-1);
-        }
+            return print_error("Error");
         i++;
     }
     if (s[i] != '\0')
-    {
-        write (2, "Alpha-->Error\n", 14);
-        return (-1);
-    }
+        return print_error("Error");
     return (rs * sign);
 }
 
@@ -82,7 +71,7 @@ int cree_node(Node **head, int data)
     if (!newNode) {
         free(newNode);
         free_list(head);
-        return 1;
+        return (1);
     }
     newNode->data = data;
     newNode->next = NULL;

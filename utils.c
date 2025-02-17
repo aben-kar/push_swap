@@ -53,3 +53,24 @@ int	ft_isdigit(int c)
 		return (1);
 	return (0);
 }
+
+int print_error(char *msg) {
+    write(2, msg, 5); // error
+    write(2, "\n", 1);
+    return -1;
+}
+
+void printList(Node* head) {
+    while (head != NULL) {
+        printf("%d ", head->data);
+        head = head->next;
+    }
+    printf("\n");
+}
+
+int write_error(char *msg)
+{
+	write (2, msg, 5);
+	write (2, "\n", 1);
+	return (1);
+}
