@@ -23,14 +23,14 @@ int ft_atoi(const char *s)
         if ((rs * sign) > INT_MAX || (rs * sign) < INT_MIN)
         {
             write (2, "MAX_INT-->Error\n", 16);
-            exit(1);
+            return (-1);
         }
         i++;
     }
     if (s[i] != '\0')
     {
         write (2, "Alpha-->Error\n", 14);
-        exit(1);
+        return (-1);
     }
     return (rs * sign);
 }
@@ -93,11 +93,11 @@ int cree_node(Node **head, int data)
 }
 
 
-int repetition(Node *head, int nbr)
+int repetition(Node **head, int nbr)
 {
     if (head == NULL)
         return (0);
-    Node *curr = head;
+    Node *curr = *head;
     while (curr != NULL)
     {
         if (curr->data == nbr)
@@ -106,28 +106,3 @@ int repetition(Node *head, int nbr)
     }
     return (0);
 }
-
-int stack_a(Node **head, Node *av)
-{
-    int nbr;
-    while (av)
-    {
-        nbr = av->data;
-        if (repetition(*head, nbr))
-        {
-            free_list(head);
-            write(2, "repetetion-->Error\n", 19);
-            return (2);
-        }
-
-        if (cree_node(head, nbr) != 0)
-        {
-            free_list(head);
-            return (1);
-        }
-
-        av = av->next;
-    }
-    return (0);
-}
-

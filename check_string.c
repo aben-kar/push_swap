@@ -11,6 +11,7 @@ void printList(Node* head) {
 Node *parse_arguments(int ac, char **av)
 {
     int i;
+    int num;
     Node *head = NULL;
     i = 1;
     while (i < ac)
@@ -22,9 +23,9 @@ Node *parse_arguments(int ac, char **av)
             return (NULL);
         }
 
-        if (ft_strchr(av[i], ' ') || ft_strchr(av[i], '\t'))
+        if (ft_strchr(av[i], ' '))
         {
-            char **split_args = ft_split(av[i], " \t");
+            char **split_args = ft_split(av[i], ' ');
             if (!split_args)
             {
                 free_list(&head);
@@ -34,7 +35,20 @@ Node *parse_arguments(int ac, char **av)
             int k = 0;
             while (split_args[k])
             {
-                if (cree_node(&head, ft_atoi(split_args[k])) != 0)
+                num = ft_atoi(split_args[k]);
+                if (num == -1)
+                {
+                    ft_free(split_args);
+                    free_list(&head);
+                    return (NULL);
+                }
+                if (repetition(&head, num))
+                {
+                    write(2, "repetetion-->Error\n", 19);
+                    free_list(&head);
+                    return (NULL);                
+                }
+                if (cree_node(&head, num) != 0)
                 {
                     ft_free(split_args);
                     free_list(&head);
@@ -47,7 +61,19 @@ Node *parse_arguments(int ac, char **av)
 
         else
         {
-            if (cree_node(&head, ft_atoi(av[i])) != 0)
+            num = ft_atoi(av[i]);
+            if (num == -1)
+            {
+                free_list(&head);
+                return (NULL);
+            }
+            if (repetition(&head, num))
+            {
+                write(2, "repetetion-->Error\n", 19);
+                free_list(&head);
+                return (NULL);
+            }
+            if (cree_node(&head, num) != 0)
             {
                 free_list(&head);
                 return (NULL);

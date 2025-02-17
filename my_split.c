@@ -1,20 +1,6 @@
 #include "push_swap.h"
 
-int	is_separator(char c, char *separators)
-{
-	int	i;
-
-	i = 0;
-	while (separators[i])
-	{
-		if (c == separators[i])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-int	count_word(char const *s1, char *sp)
+int	count_word(char const *s1, char sp)
 {
 	int	i;
 	int	count;
@@ -25,26 +11,26 @@ int	count_word(char const *s1, char *sp)
 	check = 1;
 	while (s1[i])
 	{
-		if (!is_separator(s1[i], sp) && check == 1)
+		if (s1[i] != sp && check == 1)
 		{
 			count += 1;
 			check = 0;
 		}
-		else if (is_separator(s1[i], sp))
+		else if (s1[i] == sp)
 			check = 1;
 		i++;
 	}
 	return (count);
 }
 
-char	*ft_strsdup(char const *s, size_t *j, char *sp)
+char	*ft_strsdup(char const *s, size_t *j, char sp)
 {
 	char	*result;
 	size_t	i;
 	size_t	k;
 
 	i = *j;
-	while (!is_separator(s[*j], sp) && s[*j])
+	while (s[*j] != sp && s[*j])
 		(*j)++;
 	result = (char *)malloc((*j - i + 1) * sizeof(char));
 	if (!result)
@@ -67,14 +53,13 @@ void	ft_free(char **prr)
 	while (prr && prr[i])
 	{
 		free(prr[i]);
-		// prr[i] = NULL;
 		i++;
 	}
 	if (prr)
 		free(prr);
 }
 
-char	**ft_split(char const *s, char *c)
+char	**ft_split(char const *s, char c)
 {
 	size_t	j;
 	size_t	i;
@@ -91,7 +76,7 @@ char	**ft_split(char const *s, char *c)
 		return (NULL);
 	while (j < len_word)
 	{
-		while (is_separator(s[i], c) && s[i])
+		while (s[i] == c && s[i])
 			i++;
 		if (s[i])
 		{
