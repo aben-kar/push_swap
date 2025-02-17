@@ -19,8 +19,8 @@ int main(int ac, char **av)
 {
     if (ac > 1)
     {
-        Node *a = NULL;
-        // Node *b = NULL;
+        Node *a;
+        Node *b = NULL;
 
         if ((!av[1][0]))
         {
@@ -28,23 +28,18 @@ int main(int ac, char **av)
             return 1;
         }
         
-        Node *number = parse_arguments(ac, av);
-        if (!number)
+        a = parse_arguments(ac, av);
+        if (!a)
         {
-            free_list(&number);
+            free_list(&a);
             return (1);
         }
-
-        if (stack_a(&a, number) != 0)
-        {
-            free_list(&number);
-            return 1;
-        }
-
+        
+        pb(&a, &b);
         printList(a);
-        // printList(b);
+        printList(b);
         free_list(&a);
+        free_list(&b);
 
-        free_list(&number);
     }
 }
