@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:58:56 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/18 14:08:15 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/18 22:19:11 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct variable
 	int		len_word;
 	char	**split_args;
 	int		k;
-	int		num;
+	long	num;
 	long	rs;
 	int		sign;
 	char	*result;
@@ -60,11 +60,18 @@ int		is_only_spaces(const char *str);
 void	ft_free(char **prr);
 void	*ft_calloc(size_t count, size_t size);
 int		cree_node(t_Node **head, int data);
-int		ft_atoi(const char *s);
+long	ft_atoi(const char *s);
 int		repetition(t_Node **head, int nbr);
 int		ft_isdigit(int c);
-int		print_error(char *msg);
+long	print_error(char *msg);
 int		write_error(char *msg);
 int		ft_strlen(const char *s);
+int		only_tab(const char *str);
+int		ft_isspace(char c);
+int		count_node(t_Node **head);
+void two_nbr(t_Node **head);
+void three_nbr(t_Node **head_a);
+void four_nbr(t_Node **head_a, t_Node **head_b);
+void five_nbr(t_Node **head_a, t_Node **head_b);
 
 #endif

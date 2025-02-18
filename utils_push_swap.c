@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:35:04 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/18 14:10:20 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/18 17:12:06 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ void	*ft_calloc(size_t count, size_t size)
 	return (s);
 }
 
-int	print_error(char *msg)
+long	print_error(char *msg)
 {
 	write(2, msg, ft_strlen(msg));
 	write(2, "\n", 1);
-	return (-1);
+	return (21474836499);
 }
 
 int	ft_isdigit(int c)
@@ -45,7 +45,7 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
-int	ft_atoi(const char *s)
+long	ft_atoi(const char *s)
 {
 	t_push_swap	v;
 
@@ -72,4 +72,18 @@ int	ft_atoi(const char *s)
 	if (s[v.i] != '\0')
 		return (print_error("Error"));
 	return (v.rs * v.sign);
+}
+
+int	only_tab(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if ((str[i]) == '\t')
+			return (0);
+		i++;
+	}
+	return (1);
 }

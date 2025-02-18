@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:08:59 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/18 14:09:59 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/18 22:38:27 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,41 @@ int main(int ac, char **av)
     if (ac > 1)
     {
         t_Node *a;
-        // Node *b = NULL;     
+        t_Node *b = NULL;     
         a = parse_arguments(ac, av);
-        if (!a)
+        b = parse_arguments(ac, av);
+        if (!a || !b)
         {
             free_list(&a);
+            free_list(&b);
             return (1);
-        }      
-        // pb(&a, &b);
-        // pb(&a, &b);
-        // sa(&a);
-        // sb(&b);
-        // pa(&a, &b);
-        // pa(&a, &b);
+        }
+        
+        if (count_node(&a) == 2) // sort 2 number in my stack a.
+        {
+            two_nbr(&a);
+        }
 
-        printlist(a);
-        // printList(b);
+        if (count_node(&a) == 3) // sort 3 number in my stack a.
+        {
+            three_nbr(&a);
+        }
+        
+        if (count_node(&a) == 4) // sort 4 number in my stack a.
+        {
+            four_nbr(&a, &b);
+        }
+
+        if (count_node(&a) == 5) // sort 4 number in my stack a.
+        {
+            five_nbr(&a, &b);
+        }
+        
+
+        // printlist(a);
+        // printlist(b);
 
         free_list(&a);
-        // free_list(&b);
+        free_list(&b);
     }
 }

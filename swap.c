@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:34:50 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/18 14:02:02 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/18 20:27:20 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	sa(t_Node **head)
 	tmp = curr->data;
 	curr->data = curr->next->data;
 	curr->next->data = tmp;
+	write (1, "sa\n", 3);
 }
 
 void	sb(t_Node **head)
@@ -36,10 +37,12 @@ void	sb(t_Node **head)
 	tmp = curr->data;
 	curr->data = curr->next->data;
 	curr->next->data = tmp;
+	write (1, "sb\n", 3);
 }
 
 void	ss(t_Node **head_a, t_Node **head_b)
 {
 	sa(head_a);
 	sb(head_b);
+	write (1, "ss\n", 3);
 }

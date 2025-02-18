@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:42:39 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/18 14:10:44 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/18 15:15:18 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	is_only_spaces(const char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!ft_isspace(str[i]))
+		if (ft_isspace(str[i]) == 0)
 			return (0);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:30:39 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/18 14:01:51 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/18 20:26:55 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ra(t_Node **head)
 	last->next = tmp;
 	tmp->next = NULL;
 	*head = tmp1;
+	write (1, "ra\n", 3);
 }
 
 void	rb(t_Node **head)
@@ -46,10 +47,12 @@ void	rb(t_Node **head)
 	last->next = tmp;
 	tmp->next = NULL;
 	*head = tmp1;
+	write (1, "rb\n", 3);
 }
 
 void	rr(t_Node **head_a, t_Node **head_b)
 {
 	ra(head_a);
 	rb(head_b);
+	write (1, "rr\n", 3);
 }
