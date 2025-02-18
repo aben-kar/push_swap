@@ -1,102 +1,94 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cree_stack.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/18 12:13:07 by acben-ka          #+#    #+#             */
+/*   Updated: 2025/02/18 14:03:18 by acben-ka         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int ft_atoi(const char *s)
+int	count_node(t_Node **head)
 {
-    int i = 0;
-    long rs = 0;
-    int sign = 1;
+	int		count;
+	t_Node	*curr;
 
-    while ((s[i] >= '\t' && s[i] <= '\r') || s[i] == ' ')
-        i++;
-    if (s[i] == '-' || s[i] == '+')
-    {
-        if (s[i] == '-')
-            sign = -1;
-        i++;
-        if (!ft_isdigit(s[i]))
-            return print_error("Error");
-    }
-    while (s[i] >= '0' && s[i] <= '9')
-    {
-        rs = rs * 10 + (s[i] - '0');
-
-        if ((rs * sign) > INT_MAX || (rs * sign) < INT_MIN)
-            return print_error("Error");
-        i++;
-    }
-    if (s[i] != '\0')
-        return print_error("Error");
-    return (rs * sign);
+	count = 0;
+	curr = *head;
+	while (curr != NULL)
+	{
+		count++;
+		curr = curr->next;
+	}
+	return (count);
 }
 
-int count_node(Node **head)
+t_Node	*find_last_node(t_Node *head)
 {
-    int count = 0;
-    Node *curr = *head;
-    while (curr != NULL)
-    {
-        count++;
-        curr = curr->next;
-    }
-    return (count);
+	t_Node	*curr;
+
+	if (head == NULL)
+		return (NULL);
+	curr = head;
+	while (curr->next != NULL)
+		curr = curr->next;
+	return (curr);
 }
 
-Node *find_last_node(Node *head)
+void	free_list(t_Node **head)
 {
-    if (head == NULL)
-        return (NULL);
-    Node *curr = head;
-    while (curr->next != NULL)
-    {
-        curr = curr->next;
-    }
-    return (curr);
-}
-void free_list(Node **head)
-{
-    Node *curr = *head;
-    while (curr != NULL)
-    {
-        Node *next = curr->next;
-        free(curr);
-        curr = next;
-    }
-    *head = NULL;
+	t_Node	*curr;
+	t_Node	*next;
+
+	curr = *head;
+	while (curr != NULL)
+	{
+		next = curr->next;
+		free(curr);
+		curr = next;
+	}
+	*head = NULL;
 }
 
-int cree_node(Node **head, int data)
+int	cree_node(t_Node **head, int data)
 {
-    Node *last_node;
-    Node* newNode = malloc(sizeof(Node));
-    if (!newNode) {
-        free(newNode);
-        free_list(head);
-        return (1);
-    }
-    newNode->data = data;
-    newNode->next = NULL;
+	t_Node	*last_node;
+	t_Node	*new_node;
 
-    if (*head == NULL)
-        *head = newNode;
-    else
-    {
-        last_node = find_last_node(*head);
-        last_node->next = newNode;
-    }
-    return (0);
+	new_node = malloc(sizeof(t_Node));
+	if (!new_node)
+	{
+		free_list(head);
+		return (1);
+	}
+	new_node->data = data;
+	new_node->next = NULL;
+	if (*head == NULL)
+		*head = new_node;
+	else
+	{
+		last_node = find_last_node(*head);
+		last_node->next = new_node;
+	}
+	return (0);
 }
 
-
-int repetition(Node **head, int nbr)
+int	repetition(t_Node **head, int nbr)
 {
-    if (head == NULL)
-        return (0);
-    Node *curr = *head;
-    while (curr != NULL)
-    {
-        if (curr->data == nbr)
-            return (1);
-        curr = curr->next;
-    }
-    return (0);
+	t_Node	*curr;
+
+	if (head == NULL)
+		return (0);
+	curr = *head;
+	while (curr != NULL)
+	{
+		if (curr->data == nbr)
+			return (1);
+		curr = curr->next;
+	}
+	return (0);
 }
