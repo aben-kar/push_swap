@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:08:59 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/18 22:38:27 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/19 21:21:02 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int main(int ac, char **av)
         }
         
 
-        // printlist(a);
+        printlist(a);
         // printlist(b);
 
         free_list(&a);
