@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_string.c                                     :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 12:02:17 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/18 17:13:59 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/20 21:48:03 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	handle_single_argument(char *arg, t_Node **head)
 
 int	validate_argument(char *arg)
 {
-	if (!arg || is_only_spaces(arg) == 1)
+	if (!*arg || is_only_spaces(arg) == 1)
 	{
 		write(2, "Error\n", 6);
 		return (1);
@@ -83,7 +83,7 @@ t_Node	*parse_arguments(int ac, char **av)
 	head = NULL;
 	while (i < ac)
 	{
-		if (validate_argument(av[i]))
+		if (validate_argument(av[i]) == 1)
 			return (free_list(&head), NULL);
 		if (ft_strchr(av[i], ' '))
 		{

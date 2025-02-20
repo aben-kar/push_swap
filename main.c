@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:08:59 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/20 19:43:27 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/20 22:05:56 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int ac, char **av)
         if (!a)
         {
             free_list(&a);
-            return (1);
+            return (3);
         }
         
         if (count_node(&a) == 2) // sort 2 number in my stack a.
@@ -38,7 +38,7 @@ int main(int ac, char **av)
             five_nbr(&a, &b);
         
 
-        printlist(a);
+        // printlist(a);
         // printlist(b);
 
         free_list(&a);
