@@ -3,7 +3,7 @@ NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-SRC = cree_stack.c push.c reverse_rotate.c rotate.c swap.c main.c utils2_push_swap.c check_string.c utils_push_swap.c utils1_push_swap.c sort_five_number.c utils_sort_five_number.c
+SRC = stack_init.c parser.c push.c reverse_rotate.c rotate.c swap.c sort_five.c push_swap_utils.c push_swap_helpers.c push_swap_extra.c sort_utils.c main.c 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
