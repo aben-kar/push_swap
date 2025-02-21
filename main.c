@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:08:59 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/20 22:05:56 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:29:33 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,25 +22,24 @@ int main(int ac, char **av)
         if (!a)
         {
             free_list(&a);
-            return (3);
+            return (1);
         }
+        // if (count_node(&a) == 2) // sort 2 number in my stack a.
+        //     two_nbr(&a);
+        // if (count_node(&a) == 3) // sort 3 number in my stack a.
+        //     three_nbr(&a);
+        // if (count_node(&a) == 4) // sort 4 number in my stack a.
+        //     four_nbr(&a, &b);
+        // if (count_node(&a) == 5) // sort 5 number in my stack a.
+        //     five_nbr(&a, &b);
         
-        if (count_node(&a) == 2) // sort 2 number in my stack a.
-            two_nbr(&a);
-
-        if (count_node(&a) == 3) // sort 3 number in my stack a.
-            three_nbr(&a);
+        int size = 5;
+        int *arr = store_in_array(a, size);
+        for (int i = 0; i < size; i++)
+            printf("arr => %d\n", arr[i]);
         
-        if (count_node(&a) == 4) // sort 4 number in my stack a.
-            four_nbr(&a, &b);
-
-        if (count_node(&a) == 5) // sort 5 number in my stack a.
-            five_nbr(&a, &b);
-        
-
         // printlist(a);
         // printlist(b);
-
         free_list(&a);
         free_list(&b);
     }

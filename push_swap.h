@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:58:56 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/20 21:13:59 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:29:07 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	four_nbr(t_Node **head_a, t_Node **head_b);
 void	five_nbr(t_Node **head_a, t_Node **head_b);
 void	move_min_to_top(t_Node **head, int min_pos);
 void	move_min_to_top1(t_Node **head, int min_pos);
+// void sort_stack(t_Node **head_a);
+int *store_in_array(t_Node *a, int size);
 int		is_sorted(t_Node *head);
 int		is_only_spaces(const char *str);
 int		cree_node(t_Node **head, int data);
@@ -72,6 +74,7 @@ int		ft_strlen(const char *s);
 int		only_tab(const char *str);
 int		ft_isspace(char c);
 int		count_node(t_Node **head);
+int count_node_1(t_Node *head);
 int		find_min_position(t_Node *head);
 char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *str, int c);
