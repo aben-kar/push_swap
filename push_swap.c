@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 13:55:08 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/22 15:12:46 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/22 23:08:26 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,29 +74,38 @@ void sort_stack(t_Node **a, t_Node **b)
     int *arr = store_in_array(*a, size);
     sort_array(arr, size);
 
-    int range = 5;
+    int range;
+
+    if (size <= 10)
+        range = 5;
+    else if (size <= 100)
+        range = 13;
+    else if (size > 100)
+        range = 30;
+        
     int tmp_i = 0;
     
-    t_Node *current = *a;
-    while (current)
+    while (*a != NULL) 
     {
-        int pos = find_position(arr, size, current->data);
-        
-        if (pos <= tmp_i)
+        t_Node *current = *a;
+        while (current)
         {
-            pb(a, b);
-            rb(b);
-            current = current->next;
+            int pos = find_position(arr, size, current->data);
+
+            if (pos <= tmp_i)
+            {
+                pb(a, b);
+                rb(b);
+                current = current->next;
+            }
+            else if (pos >= tmp_i && pos <= range)
+            {
+                pb(a, b);
+                current = current->next;
+            }
+            else if (pos > range)
+                current = current->next;
+            tmp_i++;
         }
-        else if (pos >= tmp_i && pos <= range)
-        {
-            pb(a, b);
-            current = current->next;
-        }
-        else if (pos > range)
-            current = current->next;
-        tmp_i++;
     }
 }
-
-
