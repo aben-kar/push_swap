@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 13:55:08 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/22 13:59:11 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/22 15:12:46 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,31 +58,15 @@ void sort_array(int *tab, int size)
 
 int find_position(int *sorted_arr, int size, int value)
 {
-    for (int i = 0; i < size; i++)
+    int i = 0;
+    while (i < size)
     {
         if (sorted_arr[i] == value)
             return i;
+        i++;
     }
     return -1;
 }
-
-// void print_positions(t_Node **stack_a)
-// {
-//     int size = count_node(stack_a);
-//     int *arr = store_in_array(*stack_a, size);
-//     sort_array(arr, size);
-    
-//     t_Node *current = *stack_a;
-//     while (current)
-//     {
-//         int pos = find_position(arr, size, current->data);
-//         printf ("position: %d\n", pos);
-//         printf("Value: %d\n", current->data);
-//         current = current->next;
-//     }
-// }
-
-
 
 void sort_stack(t_Node **a, t_Node **b)
 {
@@ -102,10 +86,15 @@ void sort_stack(t_Node **a, t_Node **b)
         {
             pb(a, b);
             rb(b);
+            current = current->next;
         }
         else if (pos >= tmp_i && pos <= range)
+        {
             pb(a, b);
-        current = current->next;
+            current = current->next;
+        }
+        else if (pos > range)
+            current = current->next;
         tmp_i++;
     }
 }

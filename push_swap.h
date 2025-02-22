@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:58:56 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/22 13:35:11 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/22 15:04:13 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,7 @@ char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *str, int c);
 long	ft_atoi(const char *s);
 long	print_error(char *msg);
+
+void sort_array(int *tab, int size);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:08:59 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/22 13:46:21 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/22 15:04:49 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,13 @@ int main(int ac, char **av)
         // if (count_node(&a) > 5)
         //     sort_stack(&a, &b);
         
-        int size = 5;
+        int size = count_node(&a);
         int *arr = store_in_array(a, size);
+        sort_array(arr, size);
         for (int i = 0; i < size; i++)
-            printf("arr => %d\n", arr[i]);
+            printf("%d ", arr[i]);
         printf ("\n");
-        printlist(a);
+        // printlist(a);
         // printlist(b);
         
         free_list(&a);
