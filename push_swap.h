@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:58:56 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/21 17:29:07 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/22 13:35:11 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	four_nbr(t_Node **head_a, t_Node **head_b);
 void	five_nbr(t_Node **head_a, t_Node **head_b);
 void	move_min_to_top(t_Node **head, int min_pos);
 void	move_min_to_top1(t_Node **head, int min_pos);
-// void sort_stack(t_Node **head_a);
+void sort_stack(t_Node **a, t_Node **b);
 int *store_in_array(t_Node *a, int size);
 int		is_sorted(t_Node *head);
 int		is_only_spaces(const char *str);
