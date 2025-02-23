@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 13:55:08 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/23 16:02:19 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/23 19:23:27 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,57 +68,126 @@ void sort_stack(t_Node **a, t_Node **b)
     int size = count_node(a);
     if (size == 0)
         return ;
+    
     int *arr = store_in_array(*a, size);
     sort_array(arr, size);
-
+    // int size = count_node(a);
     int range;
-
     if (size <= 10)
-    {
-        write (2, "ana\n", 4);
         range = 5;
-    }
     else if (size <= 100)
-    {
-        write (2, "ana1\n", 5);
         range = 13;
-    }
-    else if (size > 100)
+    else
         range = 30;
         
     int tmp_i = 0;
     
-    while (*a != NULL) 
+    t_Node *current = *a;
+    while (current != NULL)
     {
-        t_Node *current = *a;
-        while (current != NULL)
+        // int size = count_node(a);
+        // if (size == 0)
+        //     return ;
+    
+        // int *arr = store_in_array(*a, size);
+        // sort_array(arr, size);
+        int pos = find_position(arr, size, current->data);
+        
+        if (pos <= tmp_i)
         {
-            int pos = find_position(arr, size, current->data);
-
-            if (pos <= tmp_i)
-            {
-                pb(a, b);
-                rb(b);
-                tmp_i++;
-                current = *a;
-            }
-            else if (pos <= tmp_i + range)
-            {
-                pb(a, b);
-                current = *a;
-                tmp_i++;
-            }
-            else if (pos > range)
-            {
-                current = current->next;
-                int size1 = count_node(current) / 2;
-                if ((pos <= tmp_i) || (pos <= tmp_i + range))
-                {
-                    if (pos < size)
-                        
-                }
-                
-            }
+            pb(a, b);
+            rb(b);
+            tmp_i++;
+            current = *a;
         }
+        else if (pos <= tmp_i + range)
+        {
+            pb(a, b);
+            tmp_i++;
+            current = *a;
+        }
+
+        else
+        {
+            // current = current->next;
+            t_Node *next = current->next;
+            int found = 0;
+            t_Node *tmp = NULL;
+            // int best_pos = size;
+
+            while (next)
+            {
+                int new_pos = find_position(arr, size, next->data);
+                        
+                if (new_pos <= tmp_i || new_pos <= tmp_i + range)
+                {
+                    found = 1;
+                    tmp = next;
+                    // best_pos = pos;
+                }
+                next = next->next;
+            }
+
+            if (found && tmp)
+            {
+                int new_pos1 = find_position(arr, size, tmp->data);
+                if (new_pos1 < size / 2)
+                {
+                    int i = 0;
+                    while (i < new_pos1)
+                    {
+                        ra(a);
+                        i++;
+                    }
+                }
+                else if (new_pos1 > size / 2)
+                {
+                    int j = count_node(a) - 1;
+                    while (j >= new_pos1)
+                    {
+                        rra(a);
+                        j--;
+                    }
+                }
+                pb(a, b);
+                tmp_i++;
+                current = *a;
+            }
+        // tmp_i++;
+        // current = *a;
+        }
+        // free(arr);
     }
+
 }
+
+
+//  if (pos <= tmp_i) || if (pos <= tmp_i + range) || if (pos > range)
+//
+// range = 24
+// tmp_i = 11
+
+// 1 2 3 4 5 6 7 9 11 13 14 15 16
+// 0 1 2 3 4 5 6 7 8  9  10 11 12
+
+/*
+13 9
+16 12
+*/
+
+
+/*
+9
+7
+15
+5
+6
+4
+3
+1
+2
+11
+14
+13
+16
+*/
