@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 13:55:08 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/23 19:23:27 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/23 22:05:44 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,14 @@ int find_position(int *sorted_arr, int size, int value)
     return -1;
 }
 
-void sort_stack(t_Node **a, t_Node **b)
+void sort_sb(t_Node **a, t_Node **b)
 {
     int size = count_node(a);
-    if (size == 0)
-        return ;
+    if (size == 0 || size == 1)
+        return;
     
     int *arr = store_in_array(*a, size);
     sort_array(arr, size);
-    // int size = count_node(a);
     int range;
     if (size <= 10)
         range = 5;
@@ -85,12 +84,6 @@ void sort_stack(t_Node **a, t_Node **b)
     t_Node *current = *a;
     while (current != NULL)
     {
-        // int size = count_node(a);
-        // if (size == 0)
-        //     return ;
-    
-        // int *arr = store_in_array(*a, size);
-        // sort_array(arr, size);
         int pos = find_position(arr, size, current->data);
         
         if (pos <= tmp_i)
@@ -109,11 +102,10 @@ void sort_stack(t_Node **a, t_Node **b)
 
         else
         {
-            // current = current->next;
             t_Node *next = current->next;
             int found = 0;
             t_Node *tmp = NULL;
-            // int best_pos = size;
+            int best_pos = size;
 
             while (next)
             {
@@ -123,7 +115,7 @@ void sort_stack(t_Node **a, t_Node **b)
                 {
                     found = 1;
                     tmp = next;
-                    // best_pos = pos;
+                    best_pos = pos;
                 }
                 next = next->next;
             }
@@ -153,41 +145,78 @@ void sort_stack(t_Node **a, t_Node **b)
                 tmp_i++;
                 current = *a;
             }
-        // tmp_i++;
-        // current = *a;
         }
-        // free(arr);
     }
-
+    free(arr);
 }
 
+int find_max(t_Node **head)
+{
+    if (*head == NULL)
+        return 0;
+    
+    int max = (*head)->data;
+    t_Node *current = *head;
+    while (current != NULL)
+    {
+        if (current->data > max)
+            max = current->data;
+        current = current->next;
+    }
+    return max;
+}
 
-//  if (pos <= tmp_i) || if (pos <= tmp_i + range) || if (pos > range)
-//
-// range = 24
-// tmp_i = 11
+int find_max_index(t_Node **head)
+{
+    if (*head == NULL)
+        return 0;
 
-// 1 2 3 4 5 6 7 9 11 13 14 15 16
-// 0 1 2 3 4 5 6 7 8  9  10 11 12
+    int max = find_max(head);
+    int index = 0;
+    int max_index = 0;
+    t_Node *current = *head;
 
-/*
-13 9
-16 12
-*/
+    while (current != NULL)
+    {
+        if (current->data == max)
+            max_index = index;
+        current = current->next;
+        index++;
+    }
+    return max_index;
+}
 
+void sort_sa(t_Node **a, t_Node **b)
+{
+    t_Node *tmp = *b;
+    
+    while (tmp != NULL && tmp->next != NULL)
+    {
+        int size = count_node(b) / 2;
+        int index = find_max_index(b);
 
-/*
-9
-7
-15
-5
-6
-4
-3
-1
-2
-11
-14
-13
-16
-*/
+        if (index > size)
+        {
+            int i = count_node(b) - 1;
+            while (i >= index)
+            {
+                rrb(b);
+                i--;
+            }
+            pa(a, b);
+        }
+        else
+        {
+            int j = 0;
+            while (j < index)
+            {
+                rb(b);
+                j++;
+            }
+            pa(a, b);
+        }
+        tmp = *b;
+    }
+    if (tmp != NULL)
+        pa(a, b);
+}
