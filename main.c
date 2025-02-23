@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 14:08:59 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/22 23:11:32 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/23 15:39:07 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int main(int ac, char **av)
             four_nbr(&a, &b);
         if (count_node(&a) == 5) // sort 5 number in my stack a.
             five_nbr(&a, &b);
-        
         if (count_node(&a) > 5)
         {
             sort_stack(&a, &b);
@@ -46,8 +45,8 @@ int main(int ac, char **av)
         // for (int i = 0; i < size; i++)
         //     printf("%d ", arr[i]);
         // printf ("\n");
-        // printlist(a);
-        // printlist(b);
+        printlist(a);
+        printlist(b);
         
         free_list(&a);
         free_list(&b);
