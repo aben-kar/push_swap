@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:30:39 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/18 20:26:55 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/24 18:17:27 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ra(t_Node **head)
 {
+	if (*head == NULL || (*head)->next == NULL)
+        return;
 	t_Node	*tmp;
 	t_Node	*tmp1;
 	t_Node	*last;
@@ -31,23 +33,26 @@ void	ra(t_Node **head)
 	write (1, "ra\n", 3);
 }
 
-void	rb(t_Node **head)
+void rb(t_Node **head)
 {
-	t_Node	*tmp;
-	t_Node	*tmp1;
-	t_Node	*last;
+    if (*head == NULL || (*head)->next == NULL)
+        return; 
 
-	tmp = *head;
-	tmp1 = tmp->next;
-	last = *head;
-	while (last->next != NULL)
-	{
-		last = last->next;
-	}
-	last->next = tmp;
-	tmp->next = NULL;
-	*head = tmp1;
-	write (1, "rb\n", 3);
+    t_Node *tmp;
+    t_Node *tmp1;
+    t_Node *last;
+
+    tmp = *head;
+    tmp1 = tmp->next;
+    last = *head;
+    while (last->next != NULL)
+    {
+        last = last->next;
+    }
+    last->next = tmp;
+    tmp->next = NULL;
+    *head = tmp1;
+    write(1, "rb\n", 3);
 }
 
 void	rr(t_Node **head_a, t_Node **head_b)

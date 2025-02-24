@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 13:55:08 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/23 22:05:44 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/24 19:12:21 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,10 @@ void sort_sb(t_Node **a, t_Node **b)
     int size = count_node(a);
     if (size == 0 || size == 1)
         return;
-    
+
     int *arr = store_in_array(*a, size);
     sort_array(arr, size);
+
     int range;
     if (size <= 10)
         range = 5;
@@ -78,75 +79,28 @@ void sort_sb(t_Node **a, t_Node **b)
         range = 13;
     else
         range = 30;
-        
+
     int tmp_i = 0;
-    
-    t_Node *current = *a;
-    while (current != NULL)
+
+    while (*a != NULL)
     {
-        int pos = find_position(arr, size, current->data);
-        
+        int pos = find_position(arr, size, (*a)->data);
+
         if (pos <= tmp_i)
         {
             pb(a, b);
             rb(b);
             tmp_i++;
-            current = *a;
         }
         else if (pos <= tmp_i + range)
         {
             pb(a, b);
             tmp_i++;
-            current = *a;
         }
-
         else
-        {
-            t_Node *next = current->next;
-            int found = 0;
-            t_Node *tmp = NULL;
-            int best_pos = size;
-
-            while (next)
-            {
-                int new_pos = find_position(arr, size, next->data);
-                        
-                if (new_pos <= tmp_i || new_pos <= tmp_i + range)
-                {
-                    found = 1;
-                    tmp = next;
-                    best_pos = pos;
-                }
-                next = next->next;
-            }
-
-            if (found && tmp)
-            {
-                int new_pos1 = find_position(arr, size, tmp->data);
-                if (new_pos1 < size / 2)
-                {
-                    int i = 0;
-                    while (i < new_pos1)
-                    {
-                        ra(a);
-                        i++;
-                    }
-                }
-                else if (new_pos1 > size / 2)
-                {
-                    int j = count_node(a) - 1;
-                    while (j >= new_pos1)
-                    {
-                        rra(a);
-                        j--;
-                    }
-                }
-                pb(a, b);
-                tmp_i++;
-                current = *a;
-            }
-        }
+            ra(a);
     }
+
     free(arr);
 }
 
@@ -190,7 +144,7 @@ void sort_sa(t_Node **a, t_Node **b)
 {
     t_Node *tmp = *b;
     
-    while (tmp != NULL && tmp->next != NULL)
+    while (tmp->next != NULL)
     {
         int size = count_node(b) / 2;
         int index = find_max_index(b);
@@ -217,6 +171,6 @@ void sort_sa(t_Node **a, t_Node **b)
         }
         tmp = *b;
     }
-    if (tmp != NULL)
-        pa(a, b);
+    pa(a, b);
 }
+
