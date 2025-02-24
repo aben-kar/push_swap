@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:35:04 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/21 13:56:09 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/24 20:55:08 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ long	ft_atoi(const char *s)
 		return (print_error("Error"));
 	return (v.rs * v.sign);
 }
+
 void	*ft_calloc(size_t count, size_t size)
 {
 	unsigned char	*s;
@@ -72,7 +73,6 @@ int	ft_isdigit(int c)
 		return (1);
 	return (0);
 }
-
 
 int	only_tab(const char *str)
 {

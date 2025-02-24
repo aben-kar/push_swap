@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 13:58:56 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/23 21:26:50 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/24 21:33:17 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,26 +62,28 @@ void	four_nbr(t_Node **head_a, t_Node **head_b);
 void	five_nbr(t_Node **head_a, t_Node **head_b);
 void	move_min_to_top(t_Node **head, int min_pos);
 void	move_min_to_top1(t_Node **head, int min_pos);
-void 	sort_sb(t_Node **a, t_Node **b);
-int *store_in_array(t_Node *a, int size);
+void	pushing_sb(t_Node **a, t_Node **b);
+void	sort_sa(t_Node **a, t_Node **b);
+void	sort_array(int *tab, int size);
+int		*store_in_array(t_Node *a, int size);
 int		is_sorted(t_Node *head);
 int		is_only_spaces(const char *str);
 int		cree_node(t_Node **head, int data);
 int		repetition(t_Node **head, int nbr);
 int		ft_isdigit(int c);
+int		get_range(int size);
 int		write_error(char *msg);
 int		ft_strlen(const char *s);
 int		only_tab(const char *str);
+int		find_max(t_Node **head);
+int		find_max_index(t_Node **head);
 int		ft_isspace(char c);
 int		count_node(t_Node **head);
-int count_node_1(t_Node *head);
 int		find_min_position(t_Node *head);
+int		find_position(int *sorted_arr, int size, int value);
 char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *str, int c);
 long	ft_atoi(const char *s);
 long	print_error(char *msg);
-
-void sort_array(int *tab, int size);
-void sort_sa(t_Node **a, t_Node **b);
 
 #endif

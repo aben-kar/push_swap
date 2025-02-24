@@ -6,7 +6,7 @@
 /*   By: acben-ka <acben-ka@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 19:21:00 by acben-ka          #+#    #+#             */
-/*   Updated: 2025/02/21 13:56:41 by acben-ka         ###   ########.fr       */
+/*   Updated: 2025/02/24 21:56:23 by acben-ka         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void two_nbr(t_Node **head_a)
         sa(head_a);
     }
 }
+
+
 void three_nbr(t_Node **head_a)
 {
     if (((*head_a)->data > (*head_a)->next->data)
@@ -41,15 +43,15 @@ void three_nbr(t_Node **head_a)
 void four_nbr(t_Node **head_a, t_Node **head_b)
 {
     if (is_sorted(*head_a) == 1)
-        return;
-
+        return ;
+    
     int min_pos;
     min_pos = find_min_position(*head_a);
     move_min_to_top(head_a, min_pos);
     pb(head_a, head_b);
-
+    
     three_nbr(head_a);
-
+    
     pa(head_a, head_b);
 }
 
